@@ -92,10 +92,13 @@ StartTimeFiles = [(os.path.join(RootDir, s[0]+'Starts.txt'), s[0]) for s in Seas
 NumStarts = 500
 #RunStarts = range(0,NumStarts)
 #RunStarts = range(0,50)
+r0,r1 = [0,NumStarts]
 
 # kludge for iterating runs
-r0= int(sys.argv[2])
-r1= int(sys.argv[3])
+if len(sys.argv) > 2:
+  r0= int(sys.argv[2])
+if len(sys.argv) > 3:
+  r1= int(sys.argv[3])
 
 print 'RunLims : ', r0,r1
 RunStarts = range(r0,r1)
@@ -158,12 +161,15 @@ CubeStartSitesFilename = os.path.join(RootDir, "Arctic_startsites.txt")
 # CubeStartSitesFilename = os.path.join(RootDir, "Arctic_pipelines.txt")
 spos = open(CubeStartSitesFilename).readlines()
 
-# kludge for iterating runs
-r0= int(sys.argv[4])
-r1= int(sys.argv[5])
+s0,s1 = [0,len(spos)]
+# kludge for iterating runs for sites
+if len(sys.argv) > 4:
+  s0= int(sys.argv[4])
+if len(sys.argv) > 5:
+  s1= int(sys.argv[5])
 
-print 'RunSites : ', r0,r1
-RunSites = range(r0,r1)
+print 'RunSites : ', s0,s1
+RunSites = range(s0,s1)
 
 # this code reads the file
 CubeStartSites = [x.split("#", 1)[0].strip() for x in open(CubeStartSitesFilename).readlines()]
